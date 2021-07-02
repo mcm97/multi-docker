@@ -21,3 +21,15 @@ after_success:
   - docker push marcowilm/multi-nginx
   - docker push marcowilm/multi-server
   - docker push marcowilm/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-270510112234
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
